@@ -1,0 +1,47 @@
+#include <iostream>
+#include <stack>
+#include <iterator>
+
+using namespace std;
+
+int main()
+{
+  stack <int> st;
+  stack <int> stNew;
+  int i, length= rand()%15+1, arr[50];
+  bool f=false;
+
+  for (i=0; i<length; i++)
+  {
+    st.push (rand()%100);
+  }
+  
+  cout<<"Ваш стек: ";
+  for (i=length-1; i>-1; i--)
+  {
+    cout<<st.top()<<' ';
+    arr[i]=st.top();
+    st.pop();
+  }
+  
+  for (i=0; i<length; i++)
+  {
+    if (arr[i]%2==0 && !f)
+    {
+      arr[i]=-1;
+      f=true;
+    }
+  }
+  cout<<'\n';
+  for (i=0; i<length; i++)
+  {
+    stNew.push (arr[i]);
+  }
+  cout<<"Ваш стек: ";
+  for (i=length-1; i>-1; i--)
+  {
+    if (stNew.top()!=-1) cout<<stNew.top()<<' ';
+    arr[i]=stNew.top();
+    stNew.pop();
+  }
+}
