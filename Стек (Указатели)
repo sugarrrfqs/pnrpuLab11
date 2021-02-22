@@ -1,0 +1,81 @@
+//Удалить из стека первый элемент с четным информационным полем.
+
+#include <iostream>
+
+using namespace std;
+
+struct list {
+  int data;
+  list* next;
+};
+
+list* createList (int);
+void printList (list*, int);
+void deleteEven (list*, int&);
+
+int main()
+{
+  int length = rand()%25+1;
+  list* first = createList(length);
+
+  printList (first, length);
+  cout<<'\n';
+
+  deleteEven(first, length);
+
+  printList (first, length);
+
+  return 0;
+
+}
+
+list* createList (int length)
+{
+  list* first, *p;
+  int i;
+
+  first=NULL;
+  p=new list;
+  p->data=rand()%100+1;
+  first=p;
+
+  for (i=2;i<=length;i++)
+  {
+    list* n = new list;
+    p->next = n;
+    p=p->next;
+    p->data=rand()%100+1;
+    p->next=NULL;
+  }
+
+  return first;
+}
+
+void printList(list* first, int length)
+{
+  list* p = first;
+  cout<<"Стек длины "<<length<<'\n';
+
+  while (p!=NULL)
+  {
+    cout<< p->data<<' ';
+    p=p->next;
+  }
+}
+
+void deleteEven (list* first, int& length)
+{
+  list* p = first;
+
+  while (p->next!=NULL)
+  {
+    if (p->next->data % 2 == 0) 
+    {
+      p->next=p->next->next;
+      length--;
+      break;
+    }
+    p=p->next;
+  }
+
+}
