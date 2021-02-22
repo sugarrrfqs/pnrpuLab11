@@ -1,0 +1,47 @@
+#include <iostream>
+#include <queue>
+#include <iterator>
+
+using namespace std;
+
+int main ()
+{
+  queue <int> qu;
+  queue <int> quNew;
+  int help, i, length = rand()%15+1, arr[50];
+
+  for (i=0; i<length; i++)
+  {
+    qu.push (rand()%100);
+  }
+  cout<<"Ваша очередь: ";
+
+   for (i=0; i<length; i++)
+  {
+    arr[i]=qu.front();
+    cout<<qu.front()<<' ';
+    qu.pop();
+  }
+   for (i=0; i<length; i++)
+  {
+    qu.push(arr[i]);
+  }
+ 
+
+  for (i=0; i<length; i++)
+  {
+    help=rand()%100;
+    quNew.push(help);
+    quNew.push(qu.front());
+    qu.pop();
+  }
+
+  cout<<"\nВаша очередь: ";
+  for (i=0; i<(length*2); i++)
+  {
+    arr[i]=quNew.front();
+    cout<<quNew.front()<<' ';
+    quNew.pop();
+  }
+ 
+}
