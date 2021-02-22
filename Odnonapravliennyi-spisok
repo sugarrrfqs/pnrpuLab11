@@ -1,0 +1,88 @@
+//Удалить из списка первый элемент с четным информационным полем.
+
+#include <iostream>
+
+using namespace std;
+
+struct list {
+  int data;
+  list* next;
+};
+
+list* createList (int);
+void printList (list*);
+void deleteEven (list*);
+
+int main()
+{
+  int length = rand()%25+1;
+  list* first = createList(length), *p=first;
+
+
+  cout<<"Список длины "<<length<<'\n';
+
+  printList (first);
+  cout<<'\n';
+
+  deleteEven(first);
+
+  cout<<"Список длины "<<length-1<<'\n';
+
+  printList (first);
+
+  return 0;
+
+}
+
+list* createList (int length)
+{
+  list* first, *p;
+  int i;
+
+  first=NULL;
+  p=new list;
+  p->data=rand()%100+1;
+  first=p;
+
+  for (i=2;i<=length;i++)
+  {
+    list* n = new list;
+    p->next = n;
+    p=p->next;
+    p->data=rand()%100+1;
+    p->next=NULL;
+  }
+
+  return first;
+}
+
+void printList(list* first)
+{
+  list* p = first;
+
+  while (p!=NULL)
+  {
+    cout<< p->data<<' ';
+    p=p->next;
+  }
+}
+
+void deleteEven (list* first)
+{
+  list* p = first;
+
+  while (p->next!=NULL)
+  {
+    if (p->next->data % 2 == 0) 
+    {
+      p->next=p->next->next;
+      break;
+    }
+    p=p->next;
+  }
+  if (p->next==NULL)
+  {
+    cout<<"Не найдено четного элемента\n";
+  }
+
+}
